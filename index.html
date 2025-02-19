@@ -117,24 +117,34 @@
     </div>
 
     <script>
-        const imageList = [
-            "meme1.jpg",
-            "meme2.jpg"
-        ];
         const repoURL = "https://AltrusticNett5556.github.io/RandomStuff/images/";
+        
+        // Now you can mix local and full URLs
+        const imageList = [
+            "meme1.jpg",  // Local image (will be prefixed with repoURL)
+            "hhttps://toggl.com/blog/wp-content/uploads/2022/06/Prince-George-shocked.png"  // Another full URL image
+        ];
 
         let currentSlide = 0;
         const carousel = document.getElementById('carousel');
         const counter = document.getElementById('counter');
         const dotsContainer = document.getElementById('dots');
 
+        // Function to determine if a string is a URL
+        function isURL(str) {
+            return str.startsWith('http://') || str.startsWith('https://');
+        }
+
         // Create slides
         imageList.forEach((image, index) => {
             const slide = document.createElement('div');
             slide.className = 'slide';
+            
             const img = document.createElement('img');
-            img.src = repoURL + image;
-            img.alt = `Meme Image ${index + 1}`;
+            // If it's a full URL, use it directly; otherwise, prefix with repoURL
+            img.src = isURL(image) ? image : repoURL + image;
+            img.alt = `Image ${index + 1}`;
+            
             slide.appendChild(img);
             carousel.appendChild(slide);
 
@@ -145,7 +155,6 @@
             dotsContainer.appendChild(dot);
         });
 
-        // Update counter and dots
         function updateIndicators() {
             counter.textContent = `${currentSlide + 1} / ${imageList.length}`;
             document.querySelectorAll('.dot').forEach((dot, index) => {
