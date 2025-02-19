@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Memes Gallery</h1>
+    <div class="gallery" id="imageContainer"></div>
+
+    <script>
+        const imageList = [
+            "meme1.jpg",
+            "meme2.png",
+            "meme3.jpeg"
+        ]; // Replace with actual filenames
+
+        const repoURL = "https://slaydesequeira.github.io/MemesAndStuff/images/";
+
+        const container = document.getElementById("imageContainer");
+        imageList.forEach(image => {
+            const img = document.createElement("img");
+            img.src = repoURL + image;
+            img.alt = "Meme Image";
+            container.appendChild(img);
+        });
+    </script>
+</body>
+</html>
